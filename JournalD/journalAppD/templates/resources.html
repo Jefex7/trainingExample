@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to our first html page</h1>
+<table>
+    <tr>
+        <th> Name </th>
+        <th> Link </th>
+        <th> - </th>
+    </tr>
+    {% for r in resource_list %}
+     <tr>
+         <td>{{ r.name }} </td>
+         <td>{{ r.link }} </td>
+         <td><a href="{% url 'journalAppD:update_resource' r.id %}">Edit Resource</a></td>
+     </tr>
+    {% endfor %}
+    <td><a href="{% url 'journalAppD:create_resource' %}">Create New Resource</a></td>
+</table>
+{% endblock %}
