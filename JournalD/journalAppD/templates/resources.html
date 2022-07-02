@@ -3,14 +3,16 @@
 <h1>Welcome to our first html page</h1>
 <table>
     <tr>
-        <th> Name </th>
-        <th> Link </th>
+        <th> Date </th>
+        <th> Title </th>
+        <th> Content </th>
         <th> - </th>
     </tr>
     {% for r in resource_list %}
      <tr>
-         <td>{{ r.name }} </td>
-         <td>{{ r.link }} </td>
+         <td>{{ r.date_created }} </td>
+         <td>{{ r.title }} </td>
+         <td>{{ r.content }} </td>
          <td><a href="{% url 'journalAppD:update_resource' r.id %}">Edit Resource</a></td>
      </tr>
     {% endfor %}
