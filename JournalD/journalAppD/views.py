@@ -13,7 +13,7 @@ def home(request):
 
 def view_resources(request):
     # gets all the objects in the database
-    resources = Resource.objects.all()
+    resources = Resource.objects.all().order_by("-date_created")
 
     return render(request, 'resources.html', {
         'resource_list': resources, })
@@ -35,3 +35,4 @@ def update_resource(request, resource_id=None):
         resource_form = ResourceForm(instance=resource)
     return render(request, 'resource.html', {
         'resource_form': resource_form, })
+

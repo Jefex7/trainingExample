@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Welcome to our first html page</h1>
-<table>
+
+<!--<table>
     <tr>
         <th> Date </th>
         <th> Title </th>
@@ -9,13 +10,26 @@
         <th> - </th>
     </tr>
     {% for r in resource_list %}
-     <tr>
+    <tr>
          <td>{{ r.date_created }} </td>
          <td>{{ r.title }} </td>
          <td>{{ r.content }} </td>
+
          <td><a href="{% url 'journalAppD:update_resource' r.id %}">Edit Resource</a></td>
-     </tr>
+    </tr>
     {% endfor %}
     <td><a href="{% url 'journalAppD:create_resource' %}">Create New Resource</a></td>
-</table>
+</table>-->
+{% for r in resource_list %}
+    <article>
+        <h2 class="{{ r.date_created|date:'l' }}">
+            {{ r.date_created|date:'Y-m-d H:i' }}
+        </h2>
+        <h3>
+            <a href="{% url 'journalAppD:update_resource' r.id %}">
+                {{ r.title }}
+            </a>
+        </h3>
+    </article>
+{% endfor %}
 {% endblock %}

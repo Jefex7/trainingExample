@@ -3,8 +3,13 @@
 <h1>Add/Change Resource</h1>
 <form method="POST">
     {% csrf_token %}
-{{ resource_form }}
+    <article>
+    <h2>{{ resource_form.date_created }}</h2>
+    <h3>{{ resource_form.title }}</h3>
+    <p>{{ resource_form.content }}</p>
+    </article>
    <input type="submit"/>
 </form>
+
 <a href="{% url 'journalAppD:view_resources'  %}">Return to resource list</a>
 {% endblock %}
