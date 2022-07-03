@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 # import to make use of the database table Resource
 from journalAppD.forms import ResourceForm
 from journalAppD.models import Resource
@@ -36,3 +36,12 @@ def update_resource(request, resource_id=None):
     return render(request, 'resource.html', {
         'resource_form': resource_form, })
 
+
+def delete_resource(request, resource_id):
+    resource = Resource.objects.get(id=resource_id)
+    resource.delete()
+    # return redirect('view_resources')
+
+    resources = Resource.objects.all().order_by("-date_created")
+    return render(request, 'resources.html', {
+        'resource_list': resources, })

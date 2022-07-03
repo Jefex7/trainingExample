@@ -30,6 +30,10 @@
                 {{ r.title }}
             </a>
         </h3>
+        <a href="{% url 'journalAppD:delete_resource' r.id %}">
+            <button type="button" class="btn btn-outline-danger">Delete</button>
+        </a>
     </article>
+
 {% endfor %}
 {% endblock %}
