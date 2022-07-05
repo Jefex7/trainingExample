@@ -2,26 +2,18 @@
 {% block content %}
 <h1>Welcome to our first html page</h1>
 
-<!--<table>
-    <tr>
-        <th> Date </th>
-        <th> Title </th>
-        <th> Content </th>
-        <th> - </th>
-    </tr>
-    {% for r in resource_list %}
-    <tr>
-         <td>{{ r.date_created }} </td>
-         <td>{{ r.title }} </td>
-         <td>{{ r.content }} </td>
 
-         <td><a href="{% url 'journalAppD:update_resource' r.id %}">Edit Resource</a></td>
-    </tr>
-    {% endfor %}
-    <td><a href="{% url 'journalAppD:create_resource' %}">Create New Resource</a></td>
-</table>-->
+<form class="search">
+  <div class="search__wrapper">
+    <input type="text" name="" placeholder="Search for..." class="search__field">
+    <button type="submit" class="fa fa-search search__icon"></button>
+  </div>
+</form>
+
+
+
 {% for r in resource_list %}
-    <article>
+    <article class="resourceStyle">
         <h2 class="{{ r.date_created|date:'l' }}">
             {{ r.date_created|date:'Y-m-d H:i' }}
         </h2>
@@ -36,4 +28,13 @@
     </article>
 
 {% endfor %}
+<!-- <div class="input-group">-->
+<!--    <input type="text" class="form-control" placeholder="Search this blog">-->
+<!--    <div class="input-group-append">-->
+<!--      <button class="btn btn-secondary" type="button">-->
+<!--        <i class="fa fa-search"></i>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+
 {% endblock %}
