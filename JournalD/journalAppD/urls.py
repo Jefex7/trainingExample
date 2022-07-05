@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import home, view_resources, update_resource, delete_resource
+from .views import home, view_resources, update_resource, delete_resource, resources_pdf
 
 app_name = "journalAppD"
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('resource/<int:resource_id>/', update_resource, name="update_resource"),
     path('resources', view_resources, name="view_resources"),
     path('delete_resource/<int:resource_id>/',delete_resource, name="delete_resource"),
+    path('resources_pdf', resources_pdf, name="resources_pdf"),
 
 ]

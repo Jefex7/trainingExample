@@ -1,8 +1,13 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 # import to make use of the database table Resource
 from journalAppD.forms import ResourceForm
 from journalAppD.models import Resource
+
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 
 
 # Create your views here.
@@ -45,3 +50,39 @@ def delete_resource(request, resource_id):
     resources = Resource.objects.all().order_by("-date_created")
     return render(request, 'resources.html', {
         'resource_list': resources, })
+
+
+def resources_pdf(request):
+    # Create BytesStream buffer
+    buf = io.BytesIO()
+    # Create a canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    # Create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 14)
+
+    # Choose the model
+    resources = Resource.objects.all().order_by("-date_created")
+
+    # Add some lines of text
+    lines = []
+
+    for resource in resources:
+        lines.append("Date : "+ str(resource.date_created))
+        lines.append("Title : " + resource.title)
+        lines.append("Content :")
+        lines.append(resource.content)
+        lines.append(" ")
+        lines.append(" ")
+
+
+    for line in lines:
+        textob.textLine(line)
+
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename="resources.pdf")
