@@ -38,7 +38,6 @@
 .search__field:focus ~ .search__icon {
   background-color: transparent;
   cursor: pointer;
-  pointer-events: auto;
 }
 .search__icon {
   position: absolute;
@@ -51,7 +50,6 @@
   text-align: center;
   border-color: transparent;
   border-radius: 50%;
-  pointer-events: none;
   display: inline-block;
   transition: background-color 0.2s ease-in-out;
 }

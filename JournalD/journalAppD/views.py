@@ -74,8 +74,9 @@ def resources_pdf(request):
         lines.append("Content :")
         lines.append(resource.content)
         lines.append(" ")
+        lines.append("------------------------------------------------------------------------------------------------------------ ")
+        lines.append("------------------------------------------------------------------------------------------------------------ ")
         lines.append(" ")
-
 
     for line in lines:
         textob.textLine(line)
@@ -86,3 +87,12 @@ def resources_pdf(request):
     buf.seek(0)
 
     return FileResponse(buf, as_attachment=True, filename="resources.pdf")
+
+def search_resources(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        resources = Resource.objects.filter(title__contains=searched)
+        return render(request, 'search_resources.html', {'searched' : searched ,'resources' : resources })
+    else :
+        return render(request, 'search_resources.html', {})
+

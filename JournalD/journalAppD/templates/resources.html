@@ -3,10 +3,11 @@
 <h1>Welcome to our first html page</h1>
 
 
-<form class="search">
+<form class="search" method="POST" action="{% url 'journalAppD:search_resources'%}">
+    {% csrf_token %}
   <div class="search__wrapper">
-    <input type="text" name="" placeholder="Search for..." class="search__field">
-    <button type="submit" class="fa fa-search search__icon"></button>
+    <input type="text"  placeholder="Search for..." class="search__field" name="searched">
+   <button type="submit" class="fa fa-search search__icon"></button>
   </div>
 </form>
 
