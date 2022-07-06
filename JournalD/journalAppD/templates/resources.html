@@ -1,19 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Welcome to our first html page</h1>
-<table>
-    <tr>
-        <th> Name </th>
-        <th> Link </th>
-        <th> - </th>
-    </tr>
-    {% for r in resource_list %}
-     <tr>
-         <td>{{ r.name }} </td>
-         <td>{{ r.link }} </td>
-         <td><a href="{% url 'journalAppD:update_resource' r.id %}">Edit Resource</a></td>
-     </tr>
-    {% endfor %}
-    <td><a href="{% url 'journalAppD:create_resource' %}">Create New Resource</a></td>
-</table>
+<h1>Welcome To The Journal App</h1>
+
+
+<form class="search" method="POST" action="{% url 'journalAppD:search_resources'%}">
+    {% csrf_token %}
+  <div class="search__wrapper">
+    <input type="text"  placeholder="Search for..." class="search__field" name="searched">
+   <button type="submit" class="fa fa-search search__icon"></button>
+  </div>
+</form>
+
+<div class="resourceStyle">
+    <a href="{% url 'journalAppD:create_resource' %}">
+        <button type="submit" class="btn btn-info">Create New Journal Entry</button>
+    </a>
+</div>
+
+
+
+{% for r in resource_list %}
+    <article class="resourceStyle">
+        <h2 class="{{ r.date_created|date:'l' }}">
+            {{ r.date_created|date:'Y-m-d H:i' }}
+        </h2>
+        <h3>
+            <a href="{% url 'journalAppD:update_resource' r.id %}">
+                {{ r.title }}
+            </a>
+        </h3>
+         <a href="{% url 'journalAppD:single_resource_pdf' r.id %}">
+            <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
+        </a>
+        <a href="{% url 'journalAppD:delete_resource' r.id %}">
+            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        </a>
+
+    </article>
+
+{% endfor %}
 {% endblock %}

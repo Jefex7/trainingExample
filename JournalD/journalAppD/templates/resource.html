@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Add/Change Resource</h1>
+<h1>Add/Change Journal Entry</h1>
 <form method="POST">
     {% csrf_token %}
-{{ resource_form }}
-   <input type="submit"/>
+    <article>
+        <div class ="d-flex flex-column">
+            <span class="label label-default" style="font-size:25px;">Date : </span>
+            <div class="p-2"><h2>{{ resource_form.date_created }}</h2></div>
+            <span class="label label-default" style="font-size:25px;">Title : </span>
+            <div class="p-2" aria-label="Title"><h3>{{ resource_form.title }}</h3></div>
+            <span class="label label-default" style="font-size:25px;">Content : </span>
+            <div class="w-75 p-3">{{ resource_form.content }}</div>
+        </div>
+    </article>
+<!--   <input type="submit" name="Save">Save</input>-->
+    <a href="{% url 'journalAppD:view-resources' %}">
+        <button type="submit" class="btn btn-outline-success btn-sm">Save</button>
+    </a>
+    <a href="{% url 'journalAppD:view-resources' %}">
+        <button type="button" class="btn btn-outline-info btn-sm">Return to Journal</button>
+    </a>
 </form>
-<a href="{% url 'journalAppD:view_resources'  %}">Return to resource list</a>
+
 {% endblock %}
