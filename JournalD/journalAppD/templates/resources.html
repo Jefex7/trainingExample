@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Welcome to our first html page</h1>
+<h1>Welcome To The Journal App</h1>
 
 
 <form class="search" method="POST" action="{% url 'journalAppD:search_resources'%}">
@@ -10,6 +10,12 @@
    <button type="submit" class="fa fa-search search__icon"></button>
   </div>
 </form>
+
+<div class="resourceStyle">
+    <a href="{% url 'journalAppD:create_resource' %}">
+        <button type="submit" class="btn btn-info">Create New Journal Entry</button>
+    </a>
+</div>
 
 
 
@@ -23,19 +29,14 @@
                 {{ r.title }}
             </a>
         </h3>
-        <a href="{% url 'journalAppD:delete_resource' r.id %}">
-            <button type="button" class="btn btn-outline-danger">Delete</button>
+         <a href="{% url 'journalAppD:single_resource_pdf' r.id %}">
+            <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
         </a>
+        <a href="{% url 'journalAppD:delete_resource' r.id %}">
+            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+        </a>
+
     </article>
 
 {% endfor %}
-<!-- <div class="input-group">-->
-<!--    <input type="text" class="form-control" placeholder="Search this blog">-->
-<!--    <div class="input-group-append">-->
-<!--      <button class="btn btn-secondary" type="button">-->
-<!--        <i class="fa fa-search"></i>-->
-<!--      </button>-->
-<!--    </div>-->
-<!--  </div>-->
-
 {% endblock %}

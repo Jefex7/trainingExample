@@ -3,12 +3,19 @@
 }
 
 h1  {
-     color: blue;
+     color: black;
+     position: relative;
+    left: 30%;
      margin-top: 50px;
-     text-align: center;
      margin-bottom: 70px ;
  }
 .resourceStyle {
+    position: relative;
+    left: 30%;
+    margin-top : 30px;
+    margin-bottom : 50 px;
+}
+.searchResourceStyle{
     position: relative;
     left: 25%;
     margin-top : 30px;
@@ -56,15 +63,10 @@ h2 {
 
 article {
     margin-bottom: 0.5rem;
+    margin-left : 1rem;
 }
 
-p {
-    font-size: 1.2em;
-    padding-left: 1rem;
-    line-height: 1.3em;
-    max-width: 36rem;
-    color: dimgray;
-}
+
 
 em {
     font-style: normal;
@@ -93,6 +95,8 @@ textarea {
 textarea {
     padding: 0.5rem 1rem;
     font-family: sans-serif;
+    font-size : 15px;
+
 }
 
 button,
@@ -115,23 +119,6 @@ input[type="submit"] {
     margin: 50px auto;
 }
 
-/* Bootstrap 4 text input with search icon */
-/*
-.has-search .form-control {
-    padding-left: 2.375rem;
-}
 
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-}
-*/
 
 

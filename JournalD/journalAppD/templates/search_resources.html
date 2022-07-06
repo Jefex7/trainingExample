@@ -4,10 +4,12 @@
 {% if searched  %}
 <h1>You Search For {{ searched }}</h1>
 <br/>
- {% for r in resources %}
-<a href="{% url 'journalAppD:update_resource' r.id %}">{{r }}</a><br/>
- {% endfor %}
-
+{% for r in resources %}
+<div class="searchResourceStyle">
+    <a href="{% url 'journalAppD:update_resource' r.id %}">{{ r.date_created }} :: {{ r }}</a>
+    <br/>
+</div>
+{% endfor %}
 {%  else   %}
  <h1>Hey! You Forgot To Search For A Journal Entry...</h1>
 {%  endif   %}
