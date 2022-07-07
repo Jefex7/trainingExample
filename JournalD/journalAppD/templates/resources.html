@@ -2,7 +2,6 @@
 {% block content %}
 <h1>Welcome To The Journal App</h1>
 
-
 <form class="search" method="POST" action="{% url 'journalAppD:search_resources'%}">
     {% csrf_token %}
   <div class="search__wrapper">
@@ -15,9 +14,8 @@
     <a href="{% url 'journalAppD:create_resource' %}">
         <button type="submit" class="btn btn-info">Create New Journal Entry</button>
     </a>
+
 </div>
-
-
 
 {% for r in resource_list %}
     <article class="resourceStyle">
@@ -35,8 +33,6 @@
         <a href="{% url 'journalAppD:delete_resource' r.id %}">
             <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
         </a>
-
     </article>
-
 {% endfor %}
 {% endblock %}

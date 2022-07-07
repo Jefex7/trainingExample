@@ -12,8 +12,4 @@ class Resource(models.Model):
     def __str__(self):
         return self.title
 
-    # class Meta:
-    #     verbose_name_plural ="Resources"
 
-    # name = models.CharField(max_length=36, default=None, null=True)
-    # link = models.URLField()
